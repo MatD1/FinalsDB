@@ -73,48 +73,6 @@ export default function RootLayout({
               </Toolbar>
             </AppBar>
 
-            {/* <Drawer
-              sx={{
-                width: DRAWER_WIDTH,
-                flexShrink: 0,
-                '& .MuiDrawer-paper': {
-                  width: DRAWER_WIDTH,
-                  boxSizing: 'border-box',
-                  top: ['48px', '56px', '64px'],
-                  height: 'auto',
-                  bottom: 0,
-                },
-              }}
-              variant="permanent"
-              anchor="left"
-            >
-              <Divider />
-              <List>
-                {LINKS.map(({ text, href, icon: Icon }) => (
-                  <ListItem key={href} disablePadding>
-                    <ListItemButton component={Link} href={href}>
-                      <ListItemIcon>
-                        <Icon />
-                      </ListItemIcon>
-                      <ListItemText primary={text} />
-                    </ListItemButton>
-                  </ListItem>
-                ))}
-              </List>
-              <Divider sx={{ mt: 'auto' }} />
-              <List>
-                {PLACEHOLDER_LINKS.map(({ text, icon: Icon }) => (
-                  <ListItem key={text} disablePadding>
-                    <ListItemButton>
-                      <ListItemIcon>
-                        <Icon />
-                      </ListItemIcon>
-                      <ListItemText primary={text} />
-                    </ListItemButton>
-                  </ListItem>
-                ))}
-              </List>
-            </Drawer> */}
             <Alert severity="warning" sx={{ mt: 10, mb: 2, marginX: 5 }}>
               <AlertTitle>Hello 👋</AlertTitle>
               This website is under constant construction and is constantly
@@ -130,9 +88,7 @@ export default function RootLayout({
             </Alert>
             <Alert severity="error" sx={{ mt: 2, mb: 2, marginX: 5 }}>
               <AlertTitle>Statement</AlertTitle>
-              This website is not affiliated with Embark Studios or The Finals.
-              This website is a fan project and is not endorsed by Embark
-              Studios or The Finals.
+              This website is not affiliated, associated or endorsed by Embark Studios or The Finals.
             </Alert>
             <Alert severity="error" sx={{ mt: 2, mb: 2, marginX: 5 }}>
               <AlertTitle>Leaderboard Max Players</AlertTitle>
