@@ -7,6 +7,9 @@ export const fetchGlobalLeaderboard = async () => {
       headers: {
         "Content-Type": "application/json",
       },
+      next: {
+        revalidate: 600
+      }
     }
   );
 
@@ -23,6 +26,9 @@ export const fetchPSNLeaderboard = async () => {
       headers: {
         "Content-Type": "application/json",
       },
+      next: {
+        revalidate: 600
+      }
     }
   );
 
@@ -38,6 +44,9 @@ export const fetchXboxLeaderboard = async () => {
       headers: {
         "Content-Type": "application/json",
       },
+      next: {
+        revalidate: 600
+      }
     }
   );
 
@@ -53,6 +62,9 @@ export const fetchSteamLeaderboard = async () => {
       headers: {
         "Content-Type": "application/json",
       },
+      next: {
+        revalidate: 600
+      }
     }
   );
 
