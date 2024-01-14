@@ -5,7 +5,7 @@ import Typography from "@mui/material/Typography";
 import SteamTable from "@/components/UI/Table/steam";
 import { fetchLeaderboardData } from "@/actions/actions";
 
-export const dynamic = 'auto'
+export const dynamic = 'force-dynamic'
 
 export default async function SteamLeader() {
   const steamLeaderData = await fetchLeaderboardData({ platform: "steam" });

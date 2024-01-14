@@ -10,6 +10,7 @@ export const metadata = {
   description: "A place for gamers of The Finals to check up on stats & more!",
 };
 
+export const dynamic = 'force-dynamic'
 
 export default async function HomePage() {
   const globalLeaderData = await fetchLeaderboardData({ platform: "global" });

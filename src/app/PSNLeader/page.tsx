@@ -4,7 +4,7 @@ import Typography from "@mui/material/Typography";
 import PSNTable from "@/components/UI/Table/psn";
 import { fetchLeaderboardData } from "@/actions/actions";
 
-export const dynamic = 'auto'
+export const dynamic = 'force-dynamic'
 
 export default async function PSNLeader() {
   const psnLeaderData = await fetchLeaderboardData({ platform: "psn" });
