@@ -4,8 +4,15 @@ interface Platform {
   platform: "psn" | "xbox" | "steam" | "global";
 }
 export const fetchLeaderboardData = async ({ platform }: Platform) => {
-  const host = process.env.NEXT_PUBLIC_HOST;
-  const res = await fetch(`${host}/api/leaderboards/${platform}`, {
+  // Use an absolute URL for local development and relative URL for deployment
+  const apiUrl =
+    process.env.NODE_ENV === "development"
+      ? `http://localhost:${
+          process.env.PORT || 3000
+        }/api/leaderboards/${platform}`
+      : `/api/leaderboards/${platform}`;
+
+  const res = await fetch(apiUrl, {
     headers: {
       "Content-Type": "application/json",
     },
