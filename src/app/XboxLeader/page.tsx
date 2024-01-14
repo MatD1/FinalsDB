@@ -1,11 +1,11 @@
 import * as React from "react";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
-import { fetchXboxLeaderboard } from "@/actions/actions";
+import { fetchLeaderboardData } from "@/actions/actions";
 import XBOXTable from "@/components/UI/Table/xbox";
 
 export default async function PSNLeader() {
-  const globalLeaderboardData = await fetchXboxLeaderboard();
+  const xboxLeaderData = await fetchLeaderboardData({platform: "xbox"});
   return (
     <>
       <Box sx={{ display: "flex" }}>
@@ -18,7 +18,7 @@ export default async function PSNLeader() {
         </div>
       </Box>
       <Box>
-        <XBOXTable data={globalLeaderboardData} />
+        <XBOXTable data={xboxLeaderData} />
       </Box>
     </>
   );

@@ -1,3 +1,5 @@
+"use client";
+
 import * as React from "react";
 import { AppRouterCacheProvider } from "@mui/material-nextjs/v14-appRouter";
 import { ThemeProvider } from "@mui/material/styles";
@@ -15,15 +17,8 @@ import SupportIcon from "@mui/icons-material/Support";
 import LogoutIcon from "@mui/icons-material/Logout";
 import theme from "@/theme";
 import { Alert, AlertTitle, Button } from "@mui/material";
-import { headers } from "next/headers";
+import WebVitals from "@/components/web-vitals";
 import Script from "next/script";
-import { CacheProvider } from "@emotion/react";
-import createCache from "@emotion/cache";
-
-export const metadata = {
-  title: "FinalsDB",
-  description: "A place for gamers of The Finals to check up on stats & more!",
-};
 
 const DRAWER_WIDTH = 240;
 
@@ -48,6 +43,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
+        {/* <WebVitals /> */}
+        <Script
+          async
+          src={`${process.env.NEXT_PUBLIC_WEB_VITALS_URL_NOAPI}/script.js`}
+          data-website-id="99f81dac-f400-489c-a233-9dfbc6b4797c"
+        />
         <AppRouterCacheProvider options={{ enableCssLayer: true }}>
           <ThemeProvider theme={theme}>
             {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
@@ -88,7 +89,8 @@ export default function RootLayout({
             </Alert>
             <Alert severity="error" sx={{ mt: 2, mb: 2, marginX: 5 }}>
               <AlertTitle>Statement</AlertTitle>
-              This website is not affiliated, associated or endorsed by Embark Studios or The Finals.
+              This website is not affiliated, associated or endorsed by Embark
+              Studios or The Finals.
             </Alert>
             <Alert severity="error" sx={{ mt: 2, mb: 2, marginX: 5 }}>
               <AlertTitle>Leaderboard Max Players</AlertTitle>

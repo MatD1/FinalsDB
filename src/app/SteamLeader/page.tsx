@@ -1,11 +1,12 @@
 import * as React from "react";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
-import { fetchGlobalLeaderboard, fetchSteamLeaderboard } from "@/actions/actions";
+
 import SteamTable from "@/components/UI/Table/steam";
+import { fetchLeaderboardData } from "@/actions/actions";
 
 export default async function SteamLeader() {
-  const globalLeaderboardData = await fetchSteamLeaderboard();
+  const steamLeaderData = await fetchLeaderboardData({ platform: "steam" });
   return (
     <>
       <Box sx={{ display: "flex" }}>
@@ -18,7 +19,7 @@ export default async function SteamLeader() {
         </div>
       </Box>
       <Box>
-        <SteamTable data={globalLeaderboardData} />
+        <SteamTable data={steamLeaderData} />
       </Box>
     </>
   );

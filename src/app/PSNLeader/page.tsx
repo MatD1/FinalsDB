@@ -1,11 +1,11 @@
 import * as React from "react";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
-import { fetchPSNLeaderboard } from "@/actions/actions";
 import PSNTable from "@/components/UI/Table/psn";
+import { fetchLeaderboardData } from "@/actions/actions";
 
 export default async function PSNLeader() {
-  const globalLeaderboardData = await fetchPSNLeaderboard();
+  const psnLeaderData = await fetchLeaderboardData({ platform: "psn" });
   return (
     <>
       <Box sx={{ display: "flex" }}>
@@ -18,7 +18,7 @@ export default async function PSNLeader() {
         </div>
       </Box>
       <Box>
-        <PSNTable data={globalLeaderboardData} />
+        <PSNTable data={psnLeaderData} />
       </Box>
     </>
   );

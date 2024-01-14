@@ -1,11 +1,18 @@
 import * as React from "react";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
-import { fetchGlobalLeaderboard } from "@/actions/actions";
+
 import LeaderBoardTable from "../components/UI/Table/global";
+import { fetchLeaderboardData } from "@/actions/actions";
+
+export const metadata = {
+  title: "FinalsDB",
+  description: "A place for gamers of The Finals to check up on stats & more!",
+};
+
 
 export default async function HomePage() {
-  const globalLeaderboardData = await fetchGlobalLeaderboard();
+  const globalLeaderData = await fetchLeaderboardData({ platform: "global" });
   return (
     <>
       <Box sx={{ display: "flex" }}>
@@ -18,7 +25,7 @@ export default async function HomePage() {
         </div>
       </Box>
       <Box>
-        <LeaderBoardTable data={globalLeaderboardData} />
+        <LeaderBoardTable data={globalLeaderData} />
       </Box>
     </>
   );
