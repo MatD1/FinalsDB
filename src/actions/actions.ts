@@ -10,7 +10,7 @@ export const fetchLeaderboardData = async ({ platform }: Platform) => {
       ? `http://localhost:${
           process.env.PORT || 3000
         }/api/leaderboards/${platform}`
-      : `/api/leaderboards/${platform}`;
+      : `https://finalsdb.vercel.app/api/leaderboards/${platform}`;
 
   const res = await fetch(apiUrl, {
     headers: {
