@@ -4,6 +4,8 @@ import Typography from "@mui/material/Typography";
 import { fetchLeaderboardData } from "@/actions/actions";
 import XBOXTable from "@/components/UI/Table/xbox";
 
+export const dynamic = 'auto'
+
 export default async function PSNLeader() {
   const xboxLeaderData = await fetchLeaderboardData({platform: "xbox"});
   return (

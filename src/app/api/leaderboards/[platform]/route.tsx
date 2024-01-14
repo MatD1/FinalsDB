@@ -1,6 +1,7 @@
-import { NextResponse } from "next/server";
-
-export async function GET(request: Request, context: { params: any }) {
+export async function GET(
+  request: Request,
+  context: { params: { platform: string } }
+) {
   const platform = context.params.platform;
   console.log("web-api-v1, /api/leaderboard/", platform);
 
@@ -36,7 +37,13 @@ export async function GET(request: Request, context: { params: any }) {
     },
   });
 
-  const global = await res.json();
+  const leaderData = await res.json();
 
-  return new NextResponse(JSON.stringify(global));
+  return Response.json(leaderData, {
+    headers: {
+      "Access-Control-Allow-Origin": "*",
+      "Access-Control-Allow-Methods": "GET, OPTIONS",
+      "Access-Control-Allow-Headers": "Content-Type",
+    },
+  });
 }
