@@ -17,7 +17,6 @@ import SupportIcon from "@mui/icons-material/Support";
 import LogoutIcon from "@mui/icons-material/Logout";
 import theme from "@/theme";
 import { Alert, AlertTitle, Button } from "@mui/material";
-import WebVitals from "@/components/web-vitals";
 import Script from "next/script";
 
 const DRAWER_WIDTH = 240;
@@ -102,7 +101,7 @@ export default function RootLayout({
               sx={{
                 flexGrow: 1,
                 bgcolor: "background.default",
-                mt: ["48px", "56px", "64px"],
+                mt: ["18px", "26px", "36px"],
                 p: 3,
               }}
             >

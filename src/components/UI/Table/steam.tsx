@@ -1,6 +1,13 @@
 "use client";
 
-import React, { useState, useEffect, forwardRef } from "react";
+import React, {
+  useState,
+  useEffect,
+  forwardRef,
+  Ref,
+  useRef,
+  FocusEvent,
+} from "react";
 import Box from "@mui/material/Box";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
@@ -9,7 +16,7 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
-import TextField from "@mui/material/TextField";
+import TextField, { TextFieldProps } from "@mui/material/TextField";
 import { DebounceInput } from "react-debounce-input";
 import Fuse from "fuse.js";
 import InfiniteScroll from "react-infinite-scroll-component";
@@ -29,6 +36,37 @@ interface Props {
   data: LeaderboardData[];
 }
 
+type CustomTextFieldProps = TextFieldProps & {
+  forwardedRef?: Ref<HTMLInputElement>;
+}
+
+const CustomTextField = forwardRef<HTMLInputElement, CustomTextFieldProps>(
+  (props, ref) => {
+    const { forwardedRef, ...other } = props;
+
+    // Handle focus event to store the cursor position
+    const handleFocus = (e: FocusEvent<HTMLInputElement>) => {
+      if (e.target) {
+        //@ts-ignore
+        forwardedRef?.current?.setSelectionRange(
+          e.target.selectionStart,
+          e.target.selectionStart
+        );
+      }
+    };
+
+    return (
+      <TextField
+        variant="outlined"
+        sx={{mt: 5}}
+        onFocus={handleFocus}
+        inputRef={forwardedRef}
+        {...other}
+      />
+    );
+  }
+);
+
 const SteamTable: React.FC<Props> = ({ data }) => {
   const [searchTerm, setSearchTerm] = useState<string>("");
   const [filteredData, setFilteredData] = useState<LeaderboardData[]>(data);
@@ -36,6 +74,9 @@ const SteamTable: React.FC<Props> = ({ data }) => {
     data.slice(0, 20)
   ); // Initial load of 20 items
   const [currentPage, setCurrentPage] = useState<number>(1);
+
+  // grab the count of the data
+  const totalResult = data.length;
 
   useEffect(() => {
     const fuse = new Fuse(data, {
@@ -62,19 +103,12 @@ const SteamTable: React.FC<Props> = ({ data }) => {
     setCurrentPage((prevPage) => prevPage + 1);
   };
 
-  const CustomTextField = forwardRef<
-    HTMLInputElement,
-    React.ComponentProps<typeof TextField>
-  >((props, ref) => {
-    // Customize the TextField component here
-    return <TextField variant="outlined" inputRef={ref} {...props} />;
-  });
   return (
     <Box>
       {/* Use DebounceInput for debouncing the input */}
       <Box marginBottom={5}>
         <DebounceInput
-        //@ts-ignore
+          //@ts-ignore
           element={CustomTextField}
           label="Search"
           variant="outlined"
@@ -83,6 +117,9 @@ const SteamTable: React.FC<Props> = ({ data }) => {
           debounceTimeout={300}
           onChange={(e) => setSearchTerm(e.target.value)}
         />
+      </Box>
+      <Box>
+        <Typography>Total Results: {totalResult}</Typography>
       </Box>
       <TableContainer component={Paper}>
         <InfiniteScroll
@@ -110,8 +147,8 @@ const SteamTable: React.FC<Props> = ({ data }) => {
                   <TableCell component="th" scope="row">
                     {item.name}
                   </TableCell>
-                  <TableCell>${item.c}</TableCell>
-                  <TableCell>{item.of}</TableCell>
+                  <TableCell>${item.c.toLocaleString()}</TableCell>
+                  <TableCell>{item.of.toLocaleString()}</TableCell>
                   <TableCell align="right">{item.r}</TableCell>
                 </TableRow>
               ))}

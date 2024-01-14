@@ -10,7 +10,7 @@ export const metadata = {
   description: "A place for gamers of The Finals to check up on stats & more!",
 };
 
-export const dynamic = 'force-dynamic'
+export const dynamic = "force-dynamic";
 
 export default async function HomePage() {
   const globalLeaderData = await fetchLeaderboardData({ platform: "global" });
@@ -18,10 +18,13 @@ export default async function HomePage() {
     <>
       <Box sx={{ display: "flex" }}>
         <div>
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+          <Typography
+            component="div"
+            sx={{ flexGrow: 1, fontSize: ["26px", "36px", "40px"] }}
+          >
             Welcome! Feel free to choose from a selection of the leadersboards
             above or search your in-game name below to see your position on the
-            all platforms leaderboard!
+            crossplay leaderboard!
           </Typography>
         </div>
       </Box>
